@@ -35,4 +35,29 @@ fn main() {
     // there is no mutable borrow between the use of this immutable and
     // when it was assigned
     println!("The first element is: {}", first);
+
+    // you can iterate through a vector's elements
+    for i in &v {
+        println!("{}", i);
+    }
+    
+    // you can also iterate mutably to make changes to the vector's elements
+    for i in &mut v {
+        // note the deref
+        *i += 50; 
+    }
+
+    // you can make a vector hold different types by using the variants of an
+    // enum
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
+
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("blue")),
+        SpreadsheetCell::Float(10.12),
+    ];
 }
